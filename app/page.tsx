@@ -1,9 +1,10 @@
 'use client';
 
-import { Button } from '@edreamsodigeo/prisma-design-system';
+import { Button, PrismaProvider } from '@edreamsodigeo/prisma-design-system';
 
 export default function Home() {
   return (
+    <PrismaProvider>
     <div className="app-container">
       <header className="app-header">
         <h1>Prisma Sample App</h1>
@@ -15,8 +16,8 @@ export default function Home() {
           <h2>Welcome to Prisma</h2>
           <p>Explore components from the Prisma Design System</p>
           <div className="button-group">
-            <Button variant="primary">Get Started</Button>
-            <Button variant="secondary">Learn More</Button>
+            <Button type="primary">Get Started</Button>
+            <Button type="secondary">Learn More</Button>
           </div>
         </section>
 
@@ -140,5 +141,6 @@ export default function Home() {
         }
       `}</style>
     </div>
+    </PrismaProvider>
   );
 }
