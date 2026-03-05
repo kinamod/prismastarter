@@ -1,6 +1,7 @@
 'use client';
 
 import '@/builder-registry';
+import VideoSlider from '@/components/VideoSlider/VideoSlider';
 
 export default function Home() {
   return (
@@ -22,7 +23,31 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="showcase-container"></div>
+      <div className="showcase-container">
+        <section className="showcase-section">
+          <div className="showcase-section-header">
+            <h2>Video Slider</h2>
+            <p className="showcase-section-description">
+              A responsive video carousel/slider component with navigation controls,
+              slide indicators, and video background support. Perfect for hero
+              sections and promotional content.
+            </p>
+          </div>
+          <div className="showcase-component-wrapper">
+            <VideoSlider
+              slides={[
+                { backgroundColor: 'rgb(0, 109, 160)' },
+                { backgroundColor: 'rgb(160, 0, 109)' },
+                { backgroundColor: 'rgb(109, 160, 0)' },
+              ]}
+              showNavigation={true}
+              showIndicators={true}
+              autoplay={true}
+              height={600}
+            />
+          </div>
+        </section>
+      </div>
 
       <style jsx>{`
         .showcase-header {
