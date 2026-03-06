@@ -159,7 +159,6 @@ export default function DestinationsPage() {
                         width: '100%',
                         height: '100%',
                         backfaceVisibility: 'hidden',
-                        overflow: 'hidden',
                         display: 'flex',
                         flexDirection: 'column',
                         padding: 0,
@@ -197,9 +196,14 @@ export default function DestinationsPage() {
                           zIndex: 1,
                           padding: '32px',
                           flexGrow: 1,
+                          flexShrink: 1,
+                          minHeight: 0,
                           display: 'flex',
                           flexDirection: 'column',
-                          overflow: 'auto',
+                          overflowY: 'auto',
+                          overflowX: 'hidden',
+                          WebkitOverflowScrolling: 'touch',
+                          touchAction: 'pan-y',
                           '&::-webkit-scrollbar': {
                             width: '8px',
                           },
@@ -230,7 +234,6 @@ export default function DestinationsPage() {
                           sx={{
                             margin: '0 0 20px 0',
                             color: 'white',
-                            flexGrow: 1,
                           }}
                         >
                           {destination.description}
@@ -295,10 +298,15 @@ export default function DestinationsPage() {
                         sx={{
                           padding: '32px',
                           flexGrow: 1,
+                          flexShrink: 1,
+                          minHeight: 0,
                           display: 'flex',
                           flexDirection: 'column',
                           color: 'white',
-                          overflow: 'auto',
+                          overflowY: 'auto',
+                          overflowX: 'hidden',
+                          WebkitOverflowScrolling: 'touch',
+                          touchAction: 'pan-y',
                           '&::-webkit-scrollbar': {
                             width: '8px',
                           },
@@ -325,7 +333,7 @@ export default function DestinationsPage() {
                           More About {destination.name}
                         </Heading>
 
-                        <Flex flexDirection="column" sx={{ gap: '16px', flexGrow: 1 }}>
+                        <Flex flexDirection="column" sx={{ gap: '16px' }}>
                           <Box>
                             <Body weight="bold" sx={{ marginBottom: '8px', display: 'block', color: 'white' }}>
                               📍 Location Details
