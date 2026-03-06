@@ -1,13 +1,14 @@
 'use client';
 
-import { 
-  Button, 
-  PrismaProvider, 
-  Box, 
-  Flex, 
+import {
+  Button,
+  PrismaProvider,
+  Box,
+  Flex,
   Card,
-  Divider 
+  Divider
 } from '@edreamsodigeo/prisma-design-system';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -94,6 +95,9 @@ export default function Home() {
               }}
             >
               <Button variant="primary">Get Started</Button>
+              <Link href="/destinations" style={{ textDecoration: 'none' }}>
+                <Button variant="primary">Explore Destinations</Button>
+              </Link>
               <Button variant="secondary">Learn More</Button>
             </Flex>
           </Flex>
