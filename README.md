@@ -56,10 +56,8 @@ This project is configured to use the private Prisma npm registry hosted on Goog
 
 ```
 registry = https://europe-npm.pkg.dev/edo-prod-resources/npm-all/
-//europe-npm.pkg.dev/edo-prod-resources/npm-all/:_password="${NPM_REGISTRY_PASSWORD}"
+//europe-npm.pkg.dev/edo-prod-resources/npm-all/:_password="${GAR_JSON_KEY}"
 ```
-
-The `NPM_REGISTRY_PASSWORD` is automatically derived from `GAR_JSON_KEY` during the build process.
 
 ## 🎨 Using Prisma Design System
 
