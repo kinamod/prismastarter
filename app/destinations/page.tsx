@@ -1,11 +1,14 @@
 'use client';
 
-import { 
-  Button, 
-  PrismaProvider, 
-  Box, 
-  Flex, 
+import {
+  Button,
+  PrismaProvider,
+  Box,
+  Flex,
   Card,
+  Heading,
+  Body,
+  Badge,
 } from '@edreamsodigeo/prisma-design-system';
 import Link from 'next/link';
 
@@ -73,24 +76,12 @@ export default function DestinationsPage() {
             textAlign: 'center',
           }}
         >
-          <h1
-            style={{
-              fontSize: '42px',
-              fontWeight: 700,
-              margin: '0 0 12px 0',
-            }}
-          >
+          <Heading level={1} sx={{ margin: '0 0 12px 0', color: 'white' }}>
             Tourism Destinations
-          </h1>
-          <p
-            style={{
-              fontSize: '18px',
-              margin: 0,
-              opacity: 0.9,
-            }}
-          >
+          </Heading>
+          <Body size="large" sx={{ margin: 0, opacity: 0.9, color: 'white' }}>
             Discover amazing places around the world
-          </p>
+          </Body>
         </Box>
 
         {/* Main Content */}
@@ -132,28 +123,24 @@ export default function DestinationsPage() {
                   },
                 }}
               >
-                <h3
-                  style={{
-                    fontSize: '24px',
-                    fontWeight: 700,
-                    color: '#0066cc',
+                <Heading
+                  level={3}
+                  sx={{
                     margin: '0 0 16px 0',
+                    color: '#0066cc',
                   }}
                 >
                   {destination.name}
-                </h3>
-                
-                <p
-                  style={{
-                    fontSize: '16px',
-                    color: '#475569',
+                </Heading>
+
+                <Body
+                  sx={{
                     margin: '0 0 20px 0',
-                    lineHeight: 1.6,
                     flexGrow: 1,
                   }}
                 >
                   {destination.description}
-                </p>
+                </Body>
 
                 <Box
                   sx={{
@@ -167,47 +154,21 @@ export default function DestinationsPage() {
                     sx={{ gap: '12px' }}
                   >
                     <Box>
-                      <span
-                        style={{
-                          fontSize: '14px',
-                          fontWeight: 600,
-                          color: '#1e293b',
-                          display: 'block',
-                          marginBottom: '4px',
-                        }}
-                      >
+                      <Body weight="bold" size="small" sx={{ marginBottom: '4px', display: 'block' }}>
                         Highlights
-                      </span>
-                      <span
-                        style={{
-                          fontSize: '14px',
-                          color: '#64748b',
-                        }}
-                      >
+                      </Body>
+                      <Body size="small" sx={{ color: '#64748b' }}>
                         {destination.highlights}
-                      </span>
+                      </Body>
                     </Box>
 
                     <Box>
-                      <span
-                        style={{
-                          fontSize: '14px',
-                          fontWeight: 600,
-                          color: '#1e293b',
-                          display: 'block',
-                          marginBottom: '4px',
-                        }}
-                      >
+                      <Body weight="bold" size="small" sx={{ marginBottom: '4px', display: 'block' }}>
                         Best Time to Visit
-                      </span>
-                      <span
-                        style={{
-                          fontSize: '14px',
-                          color: '#64748b',
-                        }}
-                      >
+                      </Body>
+                      <Body size="small" sx={{ color: '#64748b' }}>
                         {destination.bestTime}
-                      </span>
+                      </Body>
                     </Box>
                   </Flex>
 

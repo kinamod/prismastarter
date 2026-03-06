@@ -6,7 +6,9 @@ import {
   Box,
   Flex,
   Card,
-  Divider
+  Divider,
+  Heading,
+  Body,
 } from '@edreamsodigeo/prisma-design-system';
 import Link from 'next/link';
 
@@ -29,24 +31,12 @@ export default function Home() {
             textAlign: 'center',
           }}
         >
-          <h1
-            style={{
-              fontSize: '42px',
-              fontWeight: 700,
-              margin: '0 0 12px 0',
-            }}
-          >
+          <Heading level={1} sx={{ margin: '0 0 12px 0', color: 'white' }}>
             Prisma Sample App
-          </h1>
-          <p
-            style={{
-              fontSize: '18px',
-              margin: 0,
-              opacity: 0.9,
-            }}
-          >
+          </Heading>
+          <Body size="large" sx={{ margin: 0, opacity: 0.9, color: 'white' }}>
             A simple application built with Prisma Design System
-          </p>
+          </Body>
         </Box>
 
         {/* Main Content */}
@@ -67,25 +57,23 @@ export default function Home() {
               marginBottom: ['48px', '64px'],
             }}
           >
-            <h2
-              style={{
-                fontSize: '36px',
-                fontWeight: 700,
-                color: '#1e293b',
+            <Heading
+              level={2}
+              sx={{
                 margin: '0 0 16px 0',
               }}
             >
               Welcome to Prisma
-            </h2>
-            <p
-              style={{
-                fontSize: '18px',
+            </Heading>
+            <Body
+              size="large"
+              sx={{
                 color: '#64748b',
                 margin: '0 0 32px 0',
               }}
             >
               Explore components from the Prisma Design System
-            </p>
+            </Body>
             
             <Flex
               sx={{
@@ -120,26 +108,12 @@ export default function Home() {
                 },
               }}
             >
-              <h3
-                style={{
-                  fontSize: '24px',
-                  fontWeight: 600,
-                  color: '#1e293b',
-                  margin: '0 0 12px 0',
-                }}
-              >
+              <Heading level={3} sx={{ margin: '0 0 12px 0' }}>
                 Component Library
-              </h3>
-              <p
-                style={{
-                  fontSize: '16px',
-                  color: '#64748b',
-                  margin: 0,
-                  lineHeight: 1.6,
-                }}
-              >
+              </Heading>
+              <Body sx={{ margin: 0 }}>
                 Access a comprehensive set of UI components designed for modern applications.
-              </p>
+              </Body>
             </Card>
 
             <Card
@@ -152,26 +126,12 @@ export default function Home() {
                 },
               }}
             >
-              <h3
-                style={{
-                  fontSize: '24px',
-                  fontWeight: 600,
-                  color: '#1e293b',
-                  margin: '0 0 12px 0',
-                }}
-              >
+              <Heading level={3} sx={{ margin: '0 0 12px 0' }}>
                 Responsive Design
-              </h3>
-              <p
-                style={{
-                  fontSize: '16px',
-                  color: '#64748b',
-                  margin: 0,
-                  lineHeight: 1.6,
-                }}
-              >
+              </Heading>
+              <Body sx={{ margin: 0 }}>
                 All components are built mobile-first and adapt to any screen size.
-              </p>
+              </Body>
             </Card>
 
             <Card
@@ -184,26 +144,12 @@ export default function Home() {
                 },
               }}
             >
-              <h3
-                style={{
-                  fontSize: '24px',
-                  fontWeight: 600,
-                  color: '#1e293b',
-                  margin: '0 0 12px 0',
-                }}
-              >
+              <Heading level={3} sx={{ margin: '0 0 12px 0' }}>
                 Easy Integration
-              </h3>
-              <p
-                style={{
-                  fontSize: '16px',
-                  color: '#64748b',
-                  margin: 0,
-                  lineHeight: 1.6,
-                }}
-              >
+              </Heading>
+              <Body sx={{ margin: 0 }}>
                 Simple to use and integrate into your existing projects.
-              </p>
+              </Body>
             </Card>
           </Box>
         </Box>
