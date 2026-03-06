@@ -1,282 +1,40 @@
-# Prisma Design System Component Rules
+# Prisma Design System Usage
 
-## Core Principles
+## Core Principle
 
-This project is built exclusively with the **Prisma Design System**. All UI components, styling, and patterns must come from the Prisma design system packages.
+This project uses the **Prisma Design System** (`@edreamsodigeo/prisma-design-system`). All UI components must come from this package.
 
-## CRITICAL: Correct Theme Provider Usage
+## Theme Provider Setup
 
-### ✅ ALWAYS Use PrismaThemeProvider with a Theme Object
+Always wrap your application with `PrismaThemeProvider` and pass a theme from the `themes` object:
 
 
-import {
-  PrismaThemeProvider,
-  themes,
-  Button,
-  Heading,
-  Body,
-  Card,
-  Box,
-  Flex,
-} from '@edreamsodigeo/prisma-design-system';
+import { PrismaThemeProvider, themes } from '@edreamsodigeo/prisma-design-system';
 
-export default function MyPage() {
-  return (
-    <PrismaThemeProvider theme={themes.COBALT_ED}>
-      {/* Your components here */}
-    </PrismaThemeProvider>
-  );
-}
+<PrismaThemeProvider theme={themes.COBALT_ED}>
+  {/* Your app */}
+</PrismaThemeProvider>
 ```
 
-### ❌ NEVER Use These (Incorrect)
-
-```tsx
-// ❌ Wrong - causes theme error
-<PrismaProvider>
-
-// ❌ Wrong - causes theme error  
-<CobaltProvider>
-
-// ❌ Wrong - causes theme error
-<DiamondProvider>
-```
-
-### Available Themes
-
-Use one of these theme objects with `PrismaThemeProvider`:
-- `themes.COBALT_ED` - eDreams Cobalt theme (recommended)
-- `themes.COBALT_GO` - Go Voyages Cobalt theme
-- `themes.COBALT_OP` - Opodo Cobalt theme
-- `themes.COBALT_TR` - Travellink Cobalt theme
-- `themes.DIAMOND_ED` - eDreams Diamond theme
-- `themes.DIAMOND_GO` - Go Voyages Diamond theme
-- `themes.DIAMOND_OP` - Opodo Diamond theme
-- `themes.DIAMOND_TR` - Travellink Diamond theme
-
-## Typography Components
-
-### ✅ ALWAYS Use Prisma Typography Components
-
-```tsx
-// ✅ Correct - use Heading component
-<Heading level={1}>My Title</Heading>
-<Heading level={2}>Subtitle</Heading>
-<Heading level={3}>Section Title</Heading>
-
-// ✅ Correct - use Body component
-<Body size="large">Large body text</Body>
-<Body>Normal body text</Body>
-<Body size="small">Small body text</Body>
-<Body weight="bold">Bold text</Body>
-```
-
-### ❌ NEVER Use HTML Elements for Typography
-
-```tsx
-// ❌ Wrong - don't use HTML heading tags
-<h1>My Title</h1>
-<h2>Subtitle</h2>
-<h3>Section Title</h3>
-
-// ❌ Wrong - don't use HTML p tags
-<p>Some text</p>
-
-// ❌ Wrong - don't use span with inline styles
-<span style={{ fontSize: '14px', fontWeight: 600 }}>Text</span>
-```
+Note: Use `PrismaThemeProvider` with a theme object, not `PrismaProvider`, `CobaltProvider`, or `DiamondProvider` alone.
 
 ## Component Usage
 
-### Always Use Prisma Components
-
-1. **Never create custom UI components** when a Prisma component exists
-2. **Always import from Prisma packages** for:
-   - Buttons (`Button` component with variants: primary, secondary, text, positive, warning, critical)
-   - Forms (inputs, selects, checkboxes, radio buttons, etc.)
-   - Navigation (headers, footers, menus, tabs, breadcrumbs)
-   - Layout components (`Box`, `Flex`, `FlexRow`, `Col` for grid)
-   - Typography (`Heading`, `Body`, `Display`, `Typography`)
-   - Cards (`Card`, `HighlightedCard`)
-   - Modals and dialogs (`Modal`, `Popup`, `Drawer`)
-   - Tooltips and popovers (`Tooltip`, `Popover`)
-   - Tables (`Table`, `TableBody`, `TableCell`, `TableHead`, `TableHeader`, `TableRow`)
-   - Loading states (`Spinner`, `SkeletonButton`, `SkeletonBox`)
-   - Icons (`Icon` component)
-   - Alerts and notifications (`Alert`, `Message`, `MessageBox`)
-   - Badges and tags (`Badge`)
-   - Any other UI elements
-
-3. **Check Prisma documentation first** before building any component
-4. **Custom components are only allowed** for:
-   - Business logic specific to this application
-   - Complex compositions of Prisma components
-   - Components that genuinely don't exist in the design system
-
-### Correct Component Imports
-
-```tsx
-import {
-  // Theme
-  PrismaThemeProvider,
-  themes,
-  
-  // Layout
-  Box,
-  Flex,
-  FlexRow,
-  Col,
-  
-  // Typography
-  Heading,
-  Body,
-  Display,
-  Typography,
-  
-  // Components
-  Button,
-  Card,
-  Badge,
-  Icon,
-  Input,
-  Select,
-  Checkbox,
-  RadioButton,
-  Modal,
-  Tooltip,
-  Alert,
-  Spinner,
-} from '@edreamsodigeo/prisma-design-system';
-```
-
-## Styling Rules
-
-### Use Prisma's sx Prop for Styling
-
-Prisma components use the `sx` prop for styling (Emotion/styled-system):
-
-```tsx
-<Box
-  sx={{
-    padding: '24px',
-    margin: '16px',
-    backgroundColor: '#f0f0f0',
-  }}
->
-  Content
-</Box>
-```
-
-### Custom CSS Only When Necessary
-
-1. **Prefer Prisma components and sx prop** over custom CSS
-2. **Use Prisma's layout system** (`Box`, `Flex`, etc.)
-3. **Custom CSS only for**:
-   - Application-specific layouts
-   - Animations not provided by Prisma
-   - Edge cases not covered by the design system
-
-## Code Standards
-
-### Imports
-
-```tsx
-// ✅ Correct - import from Prisma
-import { 
-  Button, 
-  PrismaThemeProvider,
-  themes,
-  Heading,
-  Body 
-} from '@edreamsodigeo/prisma-design-system';
-
-// ❌ Incorrect - don't create custom versions
-import { Button } from '@/components/Button';
-```
-
-### TypeScript
-
-1. Use Prisma's TypeScript types for component props
-2. Import types from Prisma packages:
+1. **Always use Prisma components** when available - never create custom UI components that duplicate design system functionality
+2. **Use Prisma Typography components** (`Heading`, `Body`) instead of HTML tags (`<h1>`, `<p>`, `<span>`)
+3. **Import from the design system package**:
    ```tsx
-   import type { ButtonProps, HeadingProps, BodyProps } from '@edreamsodigeo/prisma-design-system';
+   import { Button, Card, Box, Flex, Heading, Body } from '@edreamsodigeo/prisma-design-system';
    ```
 
-## Complete Example
+## Styling
 
-```tsx
-'use client';
-
-import {
-  PrismaThemeProvider,
-  themes,
-  Box,
-  Flex,
-  Card,
-  Button,
-  Heading,
-  Body,
-  Badge,
-} from '@edreamsodigeo/prisma-design-system';
-import Link from 'next/link';
-
-export default function MyPage() {
-  return (
-    <PrismaThemeProvider theme={themes.COBALT_ED}>
-      <Box
-        sx={{
-          minHeight: '100vh',
-          padding: '24px',
-        }}
-      >
-        <Heading level={1} sx={{ marginBottom: '16px' }}>
-          Page Title
-        </Heading>
-        
-        <Body size="large" sx={{ marginBottom: '32px' }}>
-          This is a description of the page using Body component.
-        </Body>
-
-        <Flex sx={{ gap: '16px', marginBottom: '32px' }}>
-          <Button variant="primary">Primary Action</Button>
-          <Button variant="secondary">Secondary Action</Button>
-        </Flex>
-
-        <Card sx={{ padding: '24px' }}>
-          <Heading level={3} sx={{ marginBottom: '12px' }}>
-            Card Title
-          </Heading>
-          <Body>
-            Card content goes here using the Body component.
-          </Body>
-        </Card>
-      </Box>
-    </PrismaThemeProvider>
-  );
-}
-```
-
-## Validation Checklist
-
-Before submitting any work, verify:
-
-- [ ] Using `PrismaThemeProvider` with `themes.COBALT_ED` (or another theme)
-- [ ] All headings use `Heading` component (not h1, h2, h3 tags)
-- [ ] All body text uses `Body` component (not p or span tags)
-- [ ] All buttons use `Button` component with proper variants
-- [ ] Layout uses `Box`, `Flex`, `FlexRow` from Prisma
-- [ ] No custom UI components that duplicate Prisma functionality
-- [ ] TypeScript types imported from Prisma packages
-- [ ] Custom styles are minimal and only for application-specific needs
+- Use the `sx` prop for component styling (Emotion/styled-system)
+- Prefer Prisma's layout components (`Box`, `Flex`) over custom CSS
+- Only write custom CSS for application-specific needs not covered by the design system
 
 ## When in Doubt
 
-1. **Search Prisma documentation** first
-2. **Check available exports** from `@edreamsodigeo/prisma-design-system`
-3. **Ask the user** which Prisma component to use
-4. **Prefer composition** over creation
-5. **Think "assemble" not "build"** - we're assembling Prisma components
-
----
-
-**Remember**: This is a Prisma Design System project. The goal is to showcase and use Prisma components correctly, not to create custom UI.
+- Check what components are available in `@edreamsodigeo/prisma-design-system`
+- Prefer composition over creation
+- Ask if unsure which Prisma component to use
