@@ -10,10 +10,18 @@ import {
   Divider,
   Heading,
   Body,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
 } from '@edreamsodigeo/prisma-design-system';
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function Home() {
+  const [showGetStartedModal, setShowGetStartedModal] = useState(false);
+  const [showLearnMoreModal, setShowLearnMoreModal] = useState(false);
+
   return (
     <PrismaThemeProvider theme={themes.COBALT_ED}>
       <Box
@@ -95,20 +103,7 @@ export default function Home() {
               }}
             >
               <Link href="/destinations" style={{ textDecoration: 'none' }}>
-                <Button
-                  variant="primary"
-                  sx={{
-                    fontSize: '18px',
-                    padding: '16px 48px',
-                    boxShadow: '0 4px 16px rgba(0, 102, 204, 0.3)',
-                    transform: 'scale(1.1)',
-                    animation: 'pulse 2s ease-in-out infinite',
-                    '@keyframes pulse': {
-                      '0%, 100%': { transform: 'scale(1.1)' },
-                      '50%': { transform: 'scale(1.15)' },
-                    },
-                  }}
-                >
+                <Button variant="primary">
                   🌍 Explore Destinations
                 </Button>
               </Link>
@@ -121,8 +116,12 @@ export default function Home() {
                 marginTop: '16px',
               }}
             >
-              <Button variant="secondary">Get Started</Button>
-              <Button variant="secondary">Learn More</Button>
+              <Button variant="secondary" onClick={() => setShowGetStartedModal(true)}>
+                Get Started
+              </Button>
+              <Button variant="secondary" onClick={() => setShowLearnMoreModal(true)}>
+                Learn More
+              </Button>
             </Flex>
           </Flex>
 
@@ -190,6 +189,133 @@ export default function Home() {
           </Box>
         </Box>
       </Box>
+
+      {/* Get Started Modal */}
+      <Modal
+        isOpen={showGetStartedModal}
+        onClose={() => setShowGetStartedModal(false)}
+      >
+        <ModalHeader onClose={() => setShowGetStartedModal(false)}>
+          <Heading type={3} sx={{ margin: 0, color: '#1e293b' }}>
+            🚀 Get Started with Prisma Design System
+          </Heading>
+        </ModalHeader>
+        <ModalContent>
+          <Flex flexDirection="column" sx={{ gap: '20px' }}>
+            <Box>
+              <Heading type={4} sx={{ margin: '0 0 12px 0', color: '#0066cc' }}>
+                👀 Explore Interactive Destinations
+              </Heading>
+              <Body>
+                Click the <strong>🌍 Explore Destinations</strong> button above to see beautiful interactive flip cards built entirely with Prisma Design System components. Click any card to flip it and reveal more information!
+              </Body>
+            </Box>
+
+            <Box>
+              <Heading type={4} sx={{ margin: '0 0 12px 0', color: '#0066cc' }}>
+                🎨 For Designers: Build More Features
+              </Heading>
+              <Body>
+                This is your canvas! Use Builder's AI assistant to add more functionality to this app. Try prompting:
+              </Body>
+              <Box
+                as="ul"
+                sx={{
+                  margin: '12px 0',
+                  paddingLeft: '24px',
+                  color: '#475569',
+                }}
+              >
+                <li>"Add a booking form to the destinations page"</li>
+                <li>"Create a search and filter feature"</li>
+                <li>"Add a photo gallery for each destination"</li>
+                <li>"Build a favorites feature"</li>
+              </Box>
+              <Body sx={{ fontStyle: 'italic', color: '#64748b' }}>
+                All components will use the Prisma Design System automatically!
+              </Body>
+            </Box>
+          </Flex>
+        </ModalContent>
+        <ModalFooter>
+          <Flex sx={{ gap: '12px', justifyContent: 'flex-end' }}>
+            <Button variant="secondary" onClick={() => setShowGetStartedModal(false)}>
+              Close
+            </Button>
+            <Link href="/destinations" style={{ textDecoration: 'none' }}>
+              <Button variant="primary" onClick={() => setShowGetStartedModal(false)}>
+                Explore Now
+              </Button>
+            </Link>
+          </Flex>
+        </ModalFooter>
+      </Modal>
+
+      {/* Learn More Modal */}
+      <Modal
+        isOpen={showLearnMoreModal}
+        onClose={() => setShowLearnMoreModal(false)}
+      >
+        <ModalHeader onClose={() => setShowLearnMoreModal(false)}>
+          <Heading type={3} sx={{ margin: 0, color: '#1e293b' }}>
+            💡 About Builder & Design Systems
+          </Heading>
+        </ModalHeader>
+        <ModalContent>
+          <Flex flexDirection="column" sx={{ gap: '20px' }}>
+            <Box>
+              <Heading type={4} sx={{ margin: '0 0 12px 0', color: '#0066cc' }}>
+                What is Builder?
+              </Heading>
+              <Body>
+                Builder is an AI-powered development platform that helps you create applications using your design system. This project is specifically set up to build apps using the <strong>Prisma Design System</strong>.
+              </Body>
+            </Box>
+
+            <Box>
+              <Heading type={4} sx={{ margin: '0 0 12px 0', color: '#0066cc' }}>
+                How Does It Work?
+              </Heading>
+              <Body>
+                Simply describe what you want to build in natural language, and Builder's AI will generate code using authentic Prisma components. No need to manually look up component APIs or design tokens—Builder knows the design system and uses it correctly.
+              </Body>
+            </Box>
+
+            <Box
+              sx={{
+                background: '#f0f9ff',
+                border: '2px solid #0066cc',
+                borderRadius: '8px',
+                padding: '20px',
+              }}
+            >
+              <Heading type={4} sx={{ margin: '0 0 12px 0', color: '#0066cc' }}>
+                📤 Share Your Preview
+              </Heading>
+              <Body sx={{ marginBottom: '12px' }}>
+                Want to share your work? Click the <strong>Share button</strong> at the top right of your screen <span style={{ fontSize: '24px' }}>↗️</span>
+              </Body>
+              <Body size="small" sx={{ color: '#64748b' }}>
+                This generates a preview link that anyone can view—perfect for getting feedback from your team or stakeholders!
+              </Body>
+            </Box>
+
+            <Box>
+              <Heading type={4} sx={{ margin: '0 0 12px 0', color: '#0066cc' }}>
+                🎯 This Prisma Starter
+              </Heading>
+              <Body>
+                This repository is pre-configured with the Prisma Design System. All UI components, typography, colors, and spacing automatically follow Prisma's design tokens. Just focus on building features—the design consistency is handled for you.
+              </Body>
+            </Box>
+          </Flex>
+        </ModalContent>
+        <ModalFooter>
+          <Button variant="primary" onClick={() => setShowLearnMoreModal(false)} fullWidth>
+            Got It!
+          </Button>
+        </ModalFooter>
+      </Modal>
     </PrismaThemeProvider>
   );
 }
