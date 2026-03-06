@@ -2,7 +2,8 @@
 
 import {
   Button,
-  CobaltProvider,
+  PrismaThemeProvider,
+  themes,
   Box,
   Flex,
   Card,
@@ -14,7 +15,7 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <CobaltProvider>
+    <PrismaThemeProvider theme={themes.COBALT_ED}>
       <Box
         sx={{
           minHeight: '100vh',
@@ -154,6 +155,6 @@ export default function Home() {
           </Box>
         </Box>
       </Box>
-    </CobaltProvider>
+    </PrismaThemeProvider>
   );
 }

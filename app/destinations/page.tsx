@@ -2,7 +2,8 @@
 
 import {
   Button,
-  CobaltProvider,
+  PrismaThemeProvider,
+  themes,
   Box,
   Flex,
   Card,
@@ -59,7 +60,7 @@ const destinations = [
 
 export default function DestinationsPage() {
   return (
-    <CobaltProvider>
+    <PrismaThemeProvider theme={themes.COBALT_ED}>
       <Box
         sx={{
           minHeight: '100vh',
@@ -183,6 +184,6 @@ export default function DestinationsPage() {
           </Box>
         </Box>
       </Box>
-    </CobaltProvider>
+    </PrismaThemeProvider>
   );
 }
