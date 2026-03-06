@@ -2,7 +2,7 @@
 
 import {
   Button,
-  PrismaProvider,
+  CobaltProvider,
   Box,
   Flex,
   Card,
@@ -59,7 +59,7 @@ const destinations = [
 
 export default function DestinationsPage() {
   return (
-    <PrismaProvider>
+    <CobaltProvider>
       <Box
         sx={{
           minHeight: '100vh',
@@ -183,6 +183,6 @@ export default function DestinationsPage() {
           </Box>
         </Box>
       </Box>
-    </PrismaProvider>
+    </CobaltProvider>
   );
 }

@@ -2,7 +2,7 @@
 
 import {
   Button,
-  PrismaProvider,
+  CobaltProvider,
   Box,
   Flex,
   Card,
@@ -14,7 +14,7 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <PrismaProvider>
+    <CobaltProvider>
       <Box
         sx={{
           minHeight: '100vh',
@@ -154,6 +154,6 @@ export default function Home() {
           </Box>
         </Box>
       </Box>
-    </PrismaProvider>
+    </CobaltProvider>
   );
 }
