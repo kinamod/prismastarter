@@ -120,6 +120,7 @@ export default function DestinationsPage() {
               <Card
                 key={destination.id}
                 sx={{
+                  position: 'relative',
                   overflow: 'hidden',
                   transition: 'transform 0.2s, box-shadow 0.2s',
                   height: '500px',
@@ -132,100 +133,93 @@ export default function DestinationsPage() {
                   },
                 }}
               >
-                {/* Card Content with Background */}
+                {/* Background Image - Covers Entire Card */}
                 <Box
                   sx={{
-                    position: 'relative',
-                    flexGrow: 1,
-                    overflow: 'hidden',
-                  }}
-                >
-                  {/* Background Image */}
-                  <Box
-                    sx={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundImage: `url(${destination.image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    zIndex: 0,
+                    '&::after': {
+                      content: '""',
                       position: 'absolute',
                       top: 0,
                       left: 0,
                       right: 0,
                       bottom: 0,
-                      backgroundImage: `url(${destination.image})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
-                      '&::after': {
-                        content: '""',
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%)',
-                      },
-                    }}
-                  />
+                      background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%)',
+                    },
+                  }}
+                />
 
-                  {/* Content */}
-                  <Box
+                {/* Content Area */}
+                <Box
+                  sx={{
+                    position: 'relative',
+                    zIndex: 1,
+                    padding: '32px',
+                    flexGrow: 1,
+                    display: 'flex',
+                    flexDirection: 'column',
+                  }}
+                >
+                  <Heading
+                    type={3}
                     sx={{
-                      position: 'relative',
-                      zIndex: 1,
-                      padding: '32px',
-                      height: '100%',
-                      display: 'flex',
-                      flexDirection: 'column',
+                      margin: '0 0 16px 0',
+                      color: 'white',
                     }}
                   >
-                    <Heading
-                      type={3}
-                      sx={{
-                        margin: '0 0 16px 0',
-                        color: 'white',
-                      }}
-                    >
-                      {destination.name}
-                    </Heading>
+                    {destination.name}
+                  </Heading>
 
-                    <Body
-                      sx={{
-                        margin: '0 0 20px 0',
-                        color: 'white',
-                        flexGrow: 1,
-                      }}
-                    >
-                      {destination.description}
-                    </Body>
+                  <Body
+                    sx={{
+                      margin: '0 0 20px 0',
+                      color: 'white',
+                      flexGrow: 1,
+                    }}
+                  >
+                    {destination.description}
+                  </Body>
 
-                    {/* Highlights Section */}
-                    <Flex
-                      flexDirection="column"
-                      sx={{ gap: '12px' }}
-                    >
-                      <Box>
-                        <Body weight="bold" size="small" sx={{ marginBottom: '4px', display: 'block', color: 'white' }}>
-                          Highlights
-                        </Body>
-                        <Body size="small" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
-                          {destination.highlights}
-                        </Body>
-                      </Box>
+                  {/* Highlights Section */}
+                  <Flex
+                    flexDirection="column"
+                    sx={{ gap: '12px' }}
+                  >
+                    <Box>
+                      <Body weight="bold" size="small" sx={{ marginBottom: '4px', display: 'block', color: 'white' }}>
+                        Highlights
+                      </Body>
+                      <Body size="small" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                        {destination.highlights}
+                      </Body>
+                    </Box>
 
-                      <Box>
-                        <Body weight="bold" size="small" sx={{ marginBottom: '4px', display: 'block', color: 'white' }}>
-                          Best Time to Visit
-                        </Body>
-                        <Body size="small" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
-                          {destination.bestTime}
-                        </Body>
-                      </Box>
-                    </Flex>
-                  </Box>
+                    <Box>
+                      <Body weight="bold" size="small" sx={{ marginBottom: '4px', display: 'block', color: 'white' }}>
+                        Best Time to Visit
+                      </Body>
+                      <Body size="small" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                        {destination.bestTime}
+                      </Body>
+                    </Box>
+                  </Flex>
                 </Box>
 
-                {/* Footer with Button */}
+                {/* Footer with Button - At Bottom */}
                 <FooterCard
                   sx={{
+                    position: 'relative',
+                    zIndex: 1,
                     padding: '20px 32px',
-                    background: 'rgba(0, 0, 0, 0.8)',
-                    backdropFilter: 'blur(10px)',
+                    background: 'transparent',
                     borderTop: '1px solid rgba(255, 255, 255, 0.2)',
                   }}
                 >
