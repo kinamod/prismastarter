@@ -67,18 +67,10 @@ const destinations = [
 ];
 
 export default function DestinationsPage() {
-  const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set());
+  const [flippedCard, setFlippedCard] = useState<number | null>(null);
 
   const toggleFlip = (id: number) => {
-    setFlippedCards((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(id)) {
-        newSet.delete(id);
-      } else {
-        newSet.add(id);
-      }
-      return newSet;
-    });
+    setFlippedCard((prev) => (prev === id ? null : id));
   };
 
   return (
@@ -132,7 +124,7 @@ export default function DestinationsPage() {
             }}
           >
             {destinations.map((destination) => {
-              const isFlipped = flippedCards.has(destination.id);
+              const isFlipped = flippedCard === destination.id;
 
               return (
                 <Box
@@ -140,6 +132,11 @@ export default function DestinationsPage() {
                   sx={{
                     perspective: '1000px',
                     height: '500px',
+                    transition: 'transform 0.2s ease-out, filter 0.2s ease-out',
+                    '&:hover': {
+                      transform: 'translateY(-8px)',
+                      filter: 'drop-shadow(0 12px 24px rgba(0, 0, 0, 0.25))',
+                    },
                   }}
                 >
                   {/* Flip Container */}
