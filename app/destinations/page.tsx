@@ -20,6 +20,7 @@ const destinations = [
     description: 'The City of Light offers iconic landmarks, world-class museums, and romantic streets. Experience the Eiffel Tower, Louvre Museum, and charming cafés.',
     highlights: 'Eiffel Tower • Louvre • Notre-Dame',
     bestTime: 'April to June, September to October',
+    image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80',
   },
   {
     id: 2,
@@ -27,6 +28,7 @@ const destinations = [
     description: 'A vibrant metropolis blending ancient traditions with cutting-edge technology. Discover temples, modern architecture, and incredible cuisine.',
     highlights: 'Senso-ji Temple • Shibuya Crossing • Mount Fuji',
     bestTime: 'March to May, September to November',
+    image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80',
   },
   {
     id: 3,
@@ -34,6 +36,7 @@ const destinations = [
     description: 'Mediterranean beauty meets Gaudí\'s architectural wonders. Enjoy stunning beaches, vibrant culture, and world-renowned tapas.',
     highlights: 'Sagrada Familia • Park Güell • La Rambla',
     bestTime: 'May to June, September to October',
+    image: 'https://images.unsplash.com/photo-1583422409516-2895a77efded?w=800&q=80',
   },
   {
     id: 4,
@@ -41,6 +44,7 @@ const destinations = [
     description: 'The city that never sleeps offers endless entertainment, iconic skylines, and diverse neighborhoods. A cultural melting pot like no other.',
     highlights: 'Statue of Liberty • Central Park • Times Square',
     bestTime: 'April to June, September to November',
+    image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800&q=80',
   },
   {
     id: 5,
@@ -48,6 +52,7 @@ const destinations = [
     description: 'Breathtaking sunsets, white-washed buildings, and crystal-clear waters. A perfect romantic getaway in the Aegean Sea.',
     highlights: 'Oia Sunset • Red Beach • Ancient Akrotiri',
     bestTime: 'April to November',
+    image: 'https://images.unsplash.com/photo-1613395877344-13d4a8e0d49e?w=800&q=80',
   },
   {
     id: 6,
@@ -55,6 +60,7 @@ const destinations = [
     description: 'A modern oasis in the desert featuring luxury shopping, ultramodern architecture, and world-class entertainment.',
     highlights: 'Burj Khalifa • Dubai Mall • Palm Jumeirah',
     bestTime: 'November to March',
+    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80',
   },
 ];
 
@@ -113,67 +119,111 @@ export default function DestinationsPage() {
               <Card
                 key={destination.id}
                 sx={{
-                  padding: '32px',
+                  position: 'relative',
+                  overflow: 'hidden',
                   transition: 'transform 0.2s, box-shadow 0.2s',
-                  height: '100%',
+                  height: '500px',
                   display: 'flex',
                   flexDirection: 'column',
+                  padding: 0,
                   '&:hover': {
                     transform: 'translateY(-4px)',
-                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.15)',
+                    boxShadow: '0 12px 24px rgba(0, 0, 0, 0.2)',
                   },
                 }}
               >
-                <Heading
-                  type={3}
-                  sx={{
-                    margin: '0 0 16px 0',
-                    color: '#0066cc',
-                  }}
-                >
-                  {destination.name}
-                </Heading>
-
-                <Body
-                  sx={{
-                    margin: '0 0 20px 0',
-                    flexGrow: 1,
-                  }}
-                >
-                  {destination.description}
-                </Body>
-
+                {/* Background Image */}
                 <Box
                   sx={{
-                    borderTop: '1px solid #e2e8f0',
-                    paddingTop: '16px',
-                    marginTop: 'auto',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundImage: `url(${destination.image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    '&::after': {
+                      content: '""',
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%)',
+                    },
+                  }}
+                />
+
+                {/* Content */}
+                <Box
+                  sx={{
+                    position: 'relative',
+                    zIndex: 1,
+                    padding: '32px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: '100%',
                   }}
                 >
-                  <Flex
-                    flexDirection="column"
-                    sx={{ gap: '12px' }}
+                  <Heading
+                    type={3}
+                    sx={{
+                      margin: '0 0 16px 0',
+                      color: 'white',
+                    }}
                   >
-                    <Box>
-                      <Body weight="bold" size="small" sx={{ marginBottom: '4px', display: 'block' }}>
-                        Highlights
-                      </Body>
-                      <Body size="small" sx={{ color: '#64748b' }}>
-                        {destination.highlights}
-                      </Body>
+                    {destination.name}
+                  </Heading>
+
+                  <Body
+                    sx={{
+                      margin: '0 0 20px 0',
+                      color: 'white',
+                      flexGrow: 1,
+                    }}
+                  >
+                    {destination.description}
+                  </Body>
+
+                  {/* Bottom Section - Fixed Height */}
+                  <Box
+                    sx={{
+                      marginTop: 'auto',
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        borderTop: '1px solid rgba(255, 255, 255, 0.3)',
+                        paddingTop: '16px',
+                        marginBottom: '20px',
+                      }}
+                    >
+                      <Flex
+                        flexDirection="column"
+                        sx={{ gap: '12px' }}
+                      >
+                        <Box>
+                          <Body weight="bold" size="small" sx={{ marginBottom: '4px', display: 'block', color: 'white' }}>
+                            Highlights
+                          </Body>
+                          <Body size="small" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                            {destination.highlights}
+                          </Body>
+                        </Box>
+
+                        <Box>
+                          <Body weight="bold" size="small" sx={{ marginBottom: '4px', display: 'block', color: 'white' }}>
+                            Best Time to Visit
+                          </Body>
+                          <Body size="small" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                            {destination.bestTime}
+                          </Body>
+                        </Box>
+                      </Flex>
                     </Box>
 
-                    <Box>
-                      <Body weight="bold" size="small" sx={{ marginBottom: '4px', display: 'block' }}>
-                        Best Time to Visit
-                      </Body>
-                      <Body size="small" sx={{ color: '#64748b' }}>
-                        {destination.bestTime}
-                      </Body>
-                    </Box>
-                  </Flex>
-
-                  <Box sx={{ marginTop: '20px' }}>
+                    {/* Button - Always same distance from bottom */}
                     <Button variant="primary" fullWidth>
                       Learn More
                     </Button>
