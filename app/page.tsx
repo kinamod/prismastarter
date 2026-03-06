@@ -14,13 +14,13 @@ import {
   ModalContent,
   ModalHeader,
   ModalFooter,
+  useModal,
 } from '@edreamsodigeo/prisma-design-system';
 import Link from 'next/link';
-import { useState } from 'react';
 
 export default function Home() {
-  const [showGetStartedModal, setShowGetStartedModal] = useState(false);
-  const [showLearnMoreModal, setShowLearnMoreModal] = useState(false);
+  const getStartedModal = useModal();
+  const learnMoreModal = useModal();
 
   return (
     <PrismaThemeProvider theme={themes.COBALT_ED}>
@@ -116,10 +116,10 @@ export default function Home() {
                 marginTop: '16px',
               }}
             >
-              <Button variant="secondary" onClick={() => setShowGetStartedModal(true)}>
+              <Button variant="secondary" onClick={getStartedModal.open}>
                 Get Started
               </Button>
-              <Button variant="secondary" onClick={() => setShowLearnMoreModal(true)}>
+              <Button variant="secondary" onClick={learnMoreModal.open}>
                 Learn More
               </Button>
             </Flex>
@@ -191,11 +191,8 @@ export default function Home() {
       </Box>
 
       {/* Get Started Modal */}
-      <Modal
-        isOpen={showGetStartedModal}
-        onClose={() => setShowGetStartedModal(false)}
-      >
-        <ModalHeader onClose={() => setShowGetStartedModal(false)}>
+      <Modal {...getStartedModal.modalProps}>
+        <ModalHeader onClose={getStartedModal.close}>
           <Heading type={3} sx={{ margin: 0, color: '#1e293b' }}>
             🚀 Get Started with Prisma Design System
           </Heading>
@@ -239,11 +236,11 @@ export default function Home() {
         </ModalContent>
         <ModalFooter>
           <Flex sx={{ gap: '12px', justifyContent: 'flex-end' }}>
-            <Button variant="secondary" onClick={() => setShowGetStartedModal(false)}>
+            <Button variant="secondary" onClick={getStartedModal.close}>
               Close
             </Button>
             <Link href="/destinations" style={{ textDecoration: 'none' }}>
-              <Button variant="primary" onClick={() => setShowGetStartedModal(false)}>
+              <Button variant="primary" onClick={getStartedModal.close}>
                 Explore Now
               </Button>
             </Link>
@@ -252,11 +249,8 @@ export default function Home() {
       </Modal>
 
       {/* Learn More Modal */}
-      <Modal
-        isOpen={showLearnMoreModal}
-        onClose={() => setShowLearnMoreModal(false)}
-      >
-        <ModalHeader onClose={() => setShowLearnMoreModal(false)}>
+      <Modal {...learnMoreModal.modalProps}>
+        <ModalHeader onClose={learnMoreModal.close}>
           <Heading type={3} sx={{ margin: 0, color: '#1e293b' }}>
             💡 About Builder & Design Systems
           </Heading>
@@ -311,7 +305,7 @@ export default function Home() {
           </Flex>
         </ModalContent>
         <ModalFooter>
-          <Button variant="primary" onClick={() => setShowLearnMoreModal(false)} fullWidth>
+          <Button variant="primary" onClick={learnMoreModal.close} fullWidth>
             Got It!
           </Button>
         </ModalFooter>
