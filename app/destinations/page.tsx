@@ -224,6 +224,7 @@ export default function DestinationsPage() {
                           sx={{
                             margin: '0 0 16px 0',
                             color: 'white',
+                            fontWeight: 'bold',
                           }}
                         >
                           {destination.name}
@@ -266,10 +267,11 @@ export default function DestinationsPage() {
                           sx={{
                             marginTop: 'auto',
                             paddingTop: '20px',
+                            paddingBottom: '4px',
                             borderTop: '1px solid rgba(255, 255, 255, 0.2)',
                           }}
                         >
-                          <Body size="small" sx={{ color: 'white', textAlign: 'center' }}>
+                          <Body size="small" sx={{ color: 'white', textAlign: 'center', margin: 0 }}>
                             Click to learn more →
                           </Body>
                         </Box>
@@ -325,6 +327,7 @@ export default function DestinationsPage() {
                           sx={{
                             margin: '0 0 24px 0',
                             color: 'white',
+                            fontWeight: 'bold',
                           }}
                         >
                           More About {destination.name}
@@ -373,6 +376,7 @@ export default function DestinationsPage() {
                           sx={{
                             marginTop: 'auto',
                             paddingTop: '20px',
+                            paddingBottom: '4px',
                             borderTop: '1px solid rgba(255, 255, 255, 0.2)',
                           }}
                         >
