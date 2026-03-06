@@ -70,10 +70,20 @@ export default function Home() {
               size="large"
               sx={{
                 color: '#64748b',
-                margin: '0 0 32px 0',
+                margin: '0 0 16px 0',
+                maxWidth: '600px',
               }}
             >
-              Explore components from the Prisma Design System
+              Click <strong>"Explore Destinations"</strong> below to see interactive flip cards built with Prisma components!
+            </Body>
+            <Body
+              sx={{
+                color: '#64748b',
+                margin: '0 0 32px 0',
+                fontSize: '14px',
+              }}
+            >
+              Try adding more functionality to this app and experiment with the design system.
             </Body>
             
             <Flex
@@ -81,12 +91,37 @@ export default function Home() {
                 gap: '16px',
                 justifyContent: 'center',
                 flexWrap: 'wrap',
+                alignItems: 'center',
               }}
             >
-              <Button variant="primary">Get Started</Button>
               <Link href="/destinations" style={{ textDecoration: 'none' }}>
-                <Button variant="primary">Explore Destinations</Button>
+                <Button
+                  variant="primary"
+                  sx={{
+                    fontSize: '18px',
+                    padding: '16px 48px',
+                    boxShadow: '0 4px 16px rgba(0, 102, 204, 0.3)',
+                    transform: 'scale(1.1)',
+                    animation: 'pulse 2s ease-in-out infinite',
+                    '@keyframes pulse': {
+                      '0%, 100%': { transform: 'scale(1.1)' },
+                      '50%': { transform: 'scale(1.15)' },
+                    },
+                  }}
+                >
+                  🌍 Explore Destinations
+                </Button>
               </Link>
+            </Flex>
+            <Flex
+              sx={{
+                gap: '16px',
+                justifyContent: 'center',
+                flexWrap: 'wrap',
+                marginTop: '16px',
+              }}
+            >
+              <Button variant="secondary">Get Started</Button>
               <Button variant="secondary">Learn More</Button>
             </Flex>
           </Flex>
