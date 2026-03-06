@@ -199,6 +199,21 @@ export default function DestinationsPage() {
                           flexGrow: 1,
                           display: 'flex',
                           flexDirection: 'column',
+                          overflow: 'auto',
+                          '&::-webkit-scrollbar': {
+                            width: '8px',
+                          },
+                          '&::-webkit-scrollbar-track': {
+                            background: 'rgba(255, 255, 255, 0.1)',
+                            borderRadius: '4px',
+                          },
+                          '&::-webkit-scrollbar-thumb': {
+                            background: 'rgba(255, 255, 255, 0.3)',
+                            borderRadius: '4px',
+                            '&:hover': {
+                              background: 'rgba(255, 255, 255, 0.5)',
+                            },
+                          },
                         }}
                       >
                         <Heading
@@ -269,7 +284,6 @@ export default function DestinationsPage() {
                         height: '100%',
                         backfaceVisibility: 'hidden',
                         transform: 'rotateY(180deg)',
-                        overflow: 'hidden',
                         display: 'flex',
                         flexDirection: 'column',
                         padding: 0,
@@ -284,6 +298,21 @@ export default function DestinationsPage() {
                           display: 'flex',
                           flexDirection: 'column',
                           color: 'white',
+                          overflow: 'auto',
+                          '&::-webkit-scrollbar': {
+                            width: '8px',
+                          },
+                          '&::-webkit-scrollbar-track': {
+                            background: 'rgba(255, 255, 255, 0.1)',
+                            borderRadius: '4px',
+                          },
+                          '&::-webkit-scrollbar-thumb': {
+                            background: 'rgba(255, 255, 255, 0.3)',
+                            borderRadius: '4px',
+                            '&:hover': {
+                              background: 'rgba(255, 255, 255, 0.5)',
+                            },
+                          },
                         }}
                       >
                         <Heading
