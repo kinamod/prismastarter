@@ -1,183 +1,142 @@
-# Builder.io Component Demo
+# Prisma Design System Prototype Starter
 
-This app demonstrates the **Fusion → Builder Publish workflow**: create custom React components using Fusion (Builder.io's AI assistant), then use them as drag-and-drop blocks in Builder's visual editor.
+A Next.js starter repository for building prototypes using the Prisma design system. This project is pre-configured to access the private Prisma npm registry and includes all necessary tooling to get started quickly.
 
-**Perfect for demos showing:**
-- AI-generated custom components (Fusion)
-- No-code page building (Builder Publish)
-- Developer + marketer collaboration
+## 🚀 Quick Start
 
-## ⚠️ Prerequisites
+### Prerequisites
 
-### 1. Deploy to a Public URL (Required)
-Builder.io's visual editor requires a **publicly accessible URL** to preview and edit your pages. Localhost won't work for Builder.io integration.
+- Node.js 18+
+- npm, yarn, or pnpm
+- Access to the Prisma design system npm registry
 
-**Recommended hosting platforms** (all have free tiers):
-- ✅ **Vercel** - Best for Next.js, one-click deploy
-- **Netlify** - Great alternative
-- **Railway, Render, Fly.io** - Other options
+### Environment Setup
 
-**Why?** Builder.io needs to:
-- Fetch your app's content for preview
-- Enable real-time editing in the visual editor
-- Publish live pages accessible to end users
+This project requires the `GAR_JSON_KEY` environment variable to authenticate with the Google Artifact Registry (GAR) where the Prisma design system packages are hosted.
 
-### 2. Builder.io API Key
-Get your API key from [Builder.io Account Settings](https://builder.io/account/organization)
+#### Setting up GAR_JSON_KEY
 
-## 🚀 Quick Deploy
+1. **Obtain your service account JSON key** from your Google Cloud Console
+2. **Base64 encode the JSON key twice**:
 
-### Deploy to Vercel (Recommended)
-
-**Option A: One-Click Deploy**
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/kinamod/f2p&env=NEXT_PUBLIC_BUILDER_API_KEY&envDescription=Builder.io%20API%20Key&envLink=https://builder.io/account/organization)
-
-**Option B: CLI**
 ```bash
-npm i -g vercel
-vercel
-# Follow prompts, then set environment variable in Vercel dashboard
+# First encoding
+echo -n '<your-json-key>' | base64 > encoded_once.txt
+
+# Second encoding
+cat encoded_once.txt | base64 > encoded_twice.txt
+
+# The content of encoded_twice.txt is your GAR_JSON_KEY value
 ```
 
-**Set Environment Variable:**
-1. Go to your Vercel project → Settings → Environment Variables
-2. Add: `NEXT_PUBLIC_BUILDER_API_KEY` = `your_api_key_here`
-3. Redeploy to apply changes
+3. **Set the environment variable**:
 
-### Alternative Platforms
-
-**Netlify:**
 ```bash
-npm i -g netlify-cli
-netlify deploy --prod
-# Set NEXT_PUBLIC_BUILDER_API_KEY in Netlify dashboard
+# For local development, add to .env.local
+echo "GAR_JSON_KEY=<your-double-encoded-key>" >> .env.local
 ```
 
-**Railway / Render:**
-- Connect your GitHub repo
-- Set `NEXT_PUBLIC_BUILDER_API_KEY` environment variable
-- Deploy automatically
+> ⚠️ **Important**: The JSON key must be base64 encoded **twice** for proper authentication.
 
-## 📋 Demo Flow
-
-### Step 0: One-Time Setup (5 min)
-1. Deploy this app to Vercel (or your preferred platform) using the deploy button above
-2. Set `NEXT_PUBLIC_BUILDER_API_KEY` environment variable in your hosting dashboard
-3. Note your deployed URL (e.g., `https://your-app.vercel.app`)
-
-### Step 1: Create Components in Fusion
-- Use Fusion to generate custom React components
-- Components are automatically created in `components/` directory
-- Styled with CSS Modules (`styles.module.css`)
-
-### Step 2: Auto-Registration
-- Components are registered in `builder-registry.ts`
-- They become available in Builder.io's component library
-
-### Step 3: Open in Builder.io Editor
-- Go to [Builder.io Content](https://builder.io/content)
-- Create new page content
-- Set URL path (e.g., `/demo`)
-- Builder loads your deployed app's components
-
-### Step 4: Drag & Drop
-- Find your custom components in the left panel
-- Drag them onto the canvas
-- Edit props in the right sidebar
-- See live preview
-
-### Step 5: Publish
-- Click "Publish" in Builder.io
-- Visit `https://your-app.vercel.app/demo` (or your URL + path)
-- Your page is live with custom components!
-
-**This demo showcases:**
-- How developers build custom components once (Fusion)
-- How marketers drag-and-drop those components to build pages (Builder Publish)
-- The power of AI + no-code publishing
-
-## 💻 Local Development
-
-For development and testing locally (note: Builder.io integration requires deployed app):
+### Installation
 
 ```bash
+# Install dependencies
 npm install
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the component showcase.
+Open [http://localhost:3000](http://localhost:3000) to view your prototype.
 
-**⚠️ Note:** Builder.io's visual editor won't work with localhost. Deploy to a public URL for full functionality.
+## 📦 NPM Registry Configuration
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This project is configured to use the private Prisma npm registry hosted on Google Artifact Registry. The configuration is set in `.npmrc`:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+registry = https://europe-npm.pkg.dev/edo-prod-resources/npm-all/
+//europe-npm.pkg.dev/edo-prod-resources/npm-all/:_password="${NPM_REGISTRY_PASSWORD}"
+```
 
-## 📚 Learn More
+The `NPM_REGISTRY_PASSWORD` is automatically derived from `GAR_JSON_KEY` during the build process.
 
-To learn more about Next.js and Builder.io:
+## 🎨 Using Prisma Design System
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial
-- [Builder.io Documentation](https://www.builder.io/c/docs/developers) - Builder.io developer guides
-- [Custom Components Guide](https://www.builder.io/c/docs/custom-components) - How to register components
+Once authenticated, you can install and use Prisma design system packages:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm install @prisma/design-system-component
+```
+
+```tsx
+import { Button } from '@prisma/design-system-component';
+
+export default function MyPrototype() {
+  return (
+    <div>
+      <Button variant="primary">Click me</Button>
+    </div>
+  );
+}
+```
 
 ## 🏗️ Project Structure
 
 ```
 ├── app/
-│   ├── page.tsx              # Component showcase (homepage)
-│   └── [...page]/
-│       └── page.tsx          # Catch-all for Builder.io pages
-├── components/
-│   └── builder.tsx           # Builder.io rendering component
-├── builder-registry.ts       # Component registration
-└── .builderrules            # Project conventions
+│   ├── page.tsx              # Main prototype page
+│   ├── layout.tsx            # Root layout
+│   └── globals.css           # Global styles
+├── components/               # Custom components
+├── public/                   # Static assets
+├── .npmrc                    # NPM registry configuration
+└── .env.local               # Local environment variables (gitignored)
 ```
 
-## 🎨 Creating New Components
+## 🚢 Deployment
 
-Follow these steps to add components that appear in Builder.io:
+### Vercel
 
-1. Create component in `components/YourComponent/YourComponent.tsx`
-2. Add styles in `components/YourComponent/styles.module.css`
-3. Register in `builder-registry.ts` with `Builder.registerComponent()`
-4. Component automatically available in Builder.io editor
+1. Connect your repository to Vercel
+2. Add the `GAR_JSON_KEY` environment variable in project settings
+3. Deploy
 
-See `.builderrules` for detailed component creation guidelines.
+### Other Platforms
+
+Ensure the `GAR_JSON_KEY` environment variable is set in your hosting platform's environment configuration before deploying.
 
 ## 🔧 Troubleshooting
 
-**Builder.io editor shows 404 or can't load components:**
-- Ensure your app is deployed to a public URL (not localhost)
-- Verify `NEXT_PUBLIC_BUILDER_API_KEY` is set in your hosting platform
-- Check that you've created content in Builder.io with the correct URL path
+### Authentication Issues
 
-**Components not appearing in Builder.io:**
-- Confirm components are registered in `builder-registry.ts`
-- Check that the file is imported in your page routes
-- Redeploy after adding new components
+If you encounter authentication errors when installing packages:
 
-**Environment variable not working:**
-- Ensure the variable name is exactly `NEXT_PUBLIC_BUILDER_API_KEY`
-- Redeploy after adding/changing environment variables
-- Check that the API key is correct in Builder.io account settings
+1. Verify `GAR_JSON_KEY` is set correctly
+2. Ensure the key is base64 encoded **twice**
+3. Check that your service account has access to the registry
+4. Try clearing npm cache: `npm cache clean --force`
 
-## 📞 Support
+### Package Installation Failures
 
-- **Builder.io Documentation**: https://www.builder.io/c/docs/help
-- **Next.js Deployment Docs**: https://nextjs.org/docs/app/building-your-application/deploying
+```bash
+# Clear cache and reinstall
+rm -rf node_modules package-lock.json
+npm cache clean --force
+npm install
+```
+
+## 📚 Resources
+
+- [Prisma Design System Documentation](#) (Internal)
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Google Artifact Registry](https://cloud.google.com/artifact-registry/docs)
+
+## 🤝 Contributing
+
+This is a starter template for Prisma design system prototypes. For design system contributions, please refer to the main Prisma design system repository.
 
 ---
 
-**Built with:** Next.js 16, React 19, TypeScript, Builder.io SDK  
-**Node Version:** 18+
+**Built with:** Next.js 15, React 19, TypeScript  
+**Registry:** Google Artifact Registry (Europe)
