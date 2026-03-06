@@ -77,7 +77,7 @@ export default function DestinationsPage() {
             textAlign: 'center',
           }}
         >
-          <Heading level={1} sx={{ margin: '0 0 12px 0', color: 'white' }}>
+          <Heading type={1} sx={{ margin: '0 0 12px 0', color: 'white' }}>
             Tourism Destinations
           </Heading>
           <Body size="large" sx={{ margin: 0, opacity: 0.9, color: 'white' }}>
@@ -125,7 +125,7 @@ export default function DestinationsPage() {
                 }}
               >
                 <Heading
-                  level={3}
+                  type={3}
                   sx={{
                     margin: '0 0 16px 0',
                     color: '#0066cc',

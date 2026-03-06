@@ -14,7 +14,7 @@ import { PrismaThemeProvider, themes } from '@edreamsodigeo/prisma-design-system
 <PrismaThemeProvider theme={themes.COBALT_ED}>
   {/* Your app */}
 </PrismaThemeProvider>
-```
+
 
 Note: Use `PrismaThemeProvider` with a theme object, not `PrismaProvider`, `CobaltProvider`, or `DiamondProvider` alone.
 
@@ -22,6 +22,8 @@ Note: Use `PrismaThemeProvider` with a theme object, not `PrismaProvider`, `Coba
 
 1. **Always use Prisma components** when available - never create custom UI components that duplicate design system functionality
 2. **Use Prisma Typography components** (`Heading`, `Body`) instead of HTML tags (`<h1>`, `<p>`, `<span>`)
+   - `Heading` uses `type` prop (not `level`): `<Heading type={1}>Title</Heading>`
+   - `Body` uses `size` and `weight` props: `<Body size="large" weight="bold">Text</Body>`
 3. **Import from the design system package**:
    ```tsx
    import { Button, Card, Box, Flex, Heading, Body } from '@edreamsodigeo/prisma-design-system';

@@ -32,7 +32,7 @@ export default function Home() {
             textAlign: 'center',
           }}
         >
-          <Heading level={1} sx={{ margin: '0 0 12px 0', color: 'white' }}>
+          <Heading type={1} sx={{ margin: '0 0 12px 0', color: 'white' }}>
             Prisma Sample App
           </Heading>
           <Body size="large" sx={{ margin: 0, opacity: 0.9, color: 'white' }}>
@@ -59,7 +59,7 @@ export default function Home() {
             }}
           >
             <Heading
-              level={2}
+              type={2}
               sx={{
                 margin: '0 0 16px 0',
               }}
@@ -109,7 +109,7 @@ export default function Home() {
                 },
               }}
             >
-              <Heading level={3} sx={{ margin: '0 0 12px 0' }}>
+              <Heading type={3} sx={{ margin: '0 0 12px 0' }}>
                 Component Library
               </Heading>
               <Body sx={{ margin: 0 }}>
@@ -127,7 +127,7 @@ export default function Home() {
                 },
               }}
             >
-              <Heading level={3} sx={{ margin: '0 0 12px 0' }}>
+              <Heading type={3} sx={{ margin: '0 0 12px 0' }}>
                 Responsive Design
               </Heading>
               <Body sx={{ margin: 0 }}>
@@ -145,7 +145,7 @@ export default function Home() {
                 },
               }}
             >
-              <Heading level={3} sx={{ margin: '0 0 12px 0' }}>
+              <Heading type={3} sx={{ margin: '0 0 12px 0' }}>
                 Easy Integration
               </Heading>
               <Body sx={{ margin: 0 }}>
