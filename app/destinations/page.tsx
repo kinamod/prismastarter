@@ -13,6 +13,7 @@ import {
   Badge,
 } from '@edreamsodigeo/prisma-design-system';
 import Link from 'next/link';
+import { useState } from 'react';
 
 const destinations = [
   {
@@ -66,6 +67,20 @@ const destinations = [
 ];
 
 export default function DestinationsPage() {
+  const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set());
+
+  const toggleFlip = (id: number) => {
+    setFlippedCards((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(id)) {
+        newSet.delete(id);
+      } else {
+        newSet.add(id);
+      }
+      return newSet;
+    });
+  };
+
   return (
     <PrismaThemeProvider theme={themes.COBALT_ED}>
       <Box
@@ -116,119 +131,229 @@ export default function DestinationsPage() {
               gap: '24px',
             }}
           >
-            {destinations.map((destination) => (
-              <Card
-                key={destination.id}
-                sx={{
-                  position: 'relative',
-                  overflow: 'hidden',
-                  transition: 'transform 0.2s, box-shadow 0.2s',
-                  height: '500px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  padding: 0,
-                  '&:hover': {
-                    transform: 'translateY(-4px)',
-                    boxShadow: '0 12px 24px rgba(0, 0, 0, 0.2)',
-                  },
-                }}
-              >
-                {/* Background Image - Covers Entire Card */}
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    backgroundImage: `url(${destination.image})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    zIndex: 0,
-                    '&::after': {
-                      content: '""',
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%)',
-                    },
-                  }}
-                />
+            {destinations.map((destination) => {
+              const isFlipped = flippedCards.has(destination.id);
 
-                {/* Content Area */}
+              return (
                 <Box
+                  key={destination.id}
                   sx={{
-                    position: 'relative',
-                    zIndex: 1,
-                    padding: '32px',
-                    flexGrow: 1,
-                    display: 'flex',
-                    flexDirection: 'column',
+                    perspective: '1000px',
+                    height: '500px',
                   }}
                 >
-                  <Heading
-                    type={3}
+                  {/* Flip Container */}
+                  <Box
+                    onClick={() => toggleFlip(destination.id)}
                     sx={{
-                      margin: '0 0 16px 0',
-                      color: 'white',
+                      position: 'relative',
+                      width: '100%',
+                      height: '100%',
+                      transformStyle: 'preserve-3d',
+                      transition: 'transform 0.6s',
+                      transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+                      cursor: 'pointer',
                     }}
                   >
-                    {destination.name}
-                  </Heading>
+                    {/* Front Side */}
+                    <Card
+                      sx={{
+                        position: 'absolute',
+                        width: '100%',
+                        height: '100%',
+                        backfaceVisibility: 'hidden',
+                        overflow: 'hidden',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        padding: 0,
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                      }}
+                    >
+                      {/* Background Image */}
+                      <Box
+                        sx={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          backgroundImage: `url(${destination.image})`,
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                          zIndex: 0,
+                          '&::after': {
+                            content: '""',
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%)',
+                          },
+                        }}
+                      />
 
-                  <Body
-                    sx={{
-                      margin: '0 0 20px 0',
-                      color: 'white',
-                      flexGrow: 1,
-                    }}
-                  >
-                    {destination.description}
-                  </Body>
+                      {/* Content */}
+                      <Box
+                        sx={{
+                          position: 'relative',
+                          zIndex: 1,
+                          padding: '32px',
+                          flexGrow: 1,
+                          display: 'flex',
+                          flexDirection: 'column',
+                        }}
+                      >
+                        <Heading
+                          type={3}
+                          sx={{
+                            margin: '0 0 16px 0',
+                            color: 'white',
+                          }}
+                        >
+                          {destination.name}
+                        </Heading>
 
-                  {/* Highlights Section */}
-                  <Flex
-                    flexDirection="column"
-                    sx={{ gap: '12px' }}
-                  >
-                    <Box>
-                      <Body weight="bold" size="small" sx={{ marginBottom: '4px', display: 'block', color: 'white' }}>
-                        Highlights
-                      </Body>
-                      <Body size="small" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
-                        {destination.highlights}
-                      </Body>
-                    </Box>
+                        <Body
+                          sx={{
+                            margin: '0 0 20px 0',
+                            color: 'white',
+                            flexGrow: 1,
+                          }}
+                        >
+                          {destination.description}
+                        </Body>
 
-                    <Box>
-                      <Body weight="bold" size="small" sx={{ marginBottom: '4px', display: 'block', color: 'white' }}>
-                        Best Time to Visit
-                      </Body>
-                      <Body size="small" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
-                        {destination.bestTime}
-                      </Body>
-                    </Box>
-                  </Flex>
+                        <Flex
+                          flexDirection="column"
+                          sx={{ gap: '12px' }}
+                        >
+                          <Box>
+                            <Body weight="bold" size="small" sx={{ marginBottom: '4px', display: 'block', color: 'white' }}>
+                              Highlights
+                            </Body>
+                            <Body size="small" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                              {destination.highlights}
+                            </Body>
+                          </Box>
+
+                          <Box>
+                            <Body weight="bold" size="small" sx={{ marginBottom: '4px', display: 'block', color: 'white' }}>
+                              Best Time to Visit
+                            </Body>
+                            <Body size="small" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                              {destination.bestTime}
+                            </Body>
+                          </Box>
+                        </Flex>
+                      </Box>
+
+                      {/* Footer */}
+                      <FooterCard
+                        sx={{
+                          position: 'relative',
+                          zIndex: 10,
+                          padding: '20px 32px',
+                          background: 'transparent',
+                          borderTop: '1px solid rgba(255, 255, 255, 0.2)',
+                        }}
+                      >
+                        <Body size="small" sx={{ color: 'white', textAlign: 'center' }}>
+                          Click to learn more →
+                        </Body>
+                      </FooterCard>
+                    </Card>
+
+                    {/* Back Side */}
+                    <Card
+                      sx={{
+                        position: 'absolute',
+                        width: '100%',
+                        height: '100%',
+                        backfaceVisibility: 'hidden',
+                        transform: 'rotateY(180deg)',
+                        overflow: 'hidden',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        padding: 0,
+                        background: 'linear-gradient(135deg, #0066cc 0%, #0052a3 100%)',
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          padding: '32px',
+                          flexGrow: 1,
+                          display: 'flex',
+                          flexDirection: 'column',
+                          color: 'white',
+                        }}
+                      >
+                        <Heading
+                          type={3}
+                          sx={{
+                            margin: '0 0 24px 0',
+                            color: 'white',
+                          }}
+                        >
+                          More About {destination.name}
+                        </Heading>
+
+                        <Flex flexDirection="column" sx={{ gap: '16px', flexGrow: 1 }}>
+                          <Box>
+                            <Body weight="bold" sx={{ marginBottom: '8px', display: 'block', color: 'white' }}>
+                              📍 Location Details
+                            </Body>
+                            <Body size="small" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                              {destination.description}
+                            </Body>
+                          </Box>
+
+                          <Box>
+                            <Body weight="bold" sx={{ marginBottom: '8px', display: 'block', color: 'white' }}>
+                              ✨ Must-See Attractions
+                            </Body>
+                            <Body size="small" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                              {destination.highlights}
+                            </Body>
+                          </Box>
+
+                          <Box>
+                            <Body weight="bold" sx={{ marginBottom: '8px', display: 'block', color: 'white' }}>
+                              🌤️ Ideal Travel Time
+                            </Body>
+                            <Body size="small" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                              {destination.bestTime}
+                            </Body>
+                          </Box>
+
+                          <Box>
+                            <Body weight="bold" sx={{ marginBottom: '8px', display: 'block', color: 'white' }}>
+                              💡 Travel Tips
+                            </Body>
+                            <Body size="small" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                              Book accommodations in advance during peak season. Local transportation is readily available. Consider purchasing a city pass for major attractions.
+                            </Body>
+                          </Box>
+                        </Flex>
+                      </Box>
+
+                      <FooterCard
+                        sx={{
+                          padding: '20px 32px',
+                          background: 'rgba(0, 0, 0, 0.2)',
+                          borderTop: '1px solid rgba(255, 255, 255, 0.2)',
+                        }}
+                      >
+                        <Button variant="primary" fullWidth>
+                          Book Now
+                        </Button>
+                      </FooterCard>
+                    </Card>
+                  </Box>
                 </Box>
-
-                {/* Footer with Button - At Bottom */}
-                <FooterCard
-                  sx={{
-                    position: 'relative',
-                    zIndex: 10,
-                    padding: '20px 32px',
-                    background: 'transparent',
-                    borderTop: '1px solid rgba(255, 255, 255, 0.2)',
-                  }}
-                >
-                  <Button variant="primary" fullWidth>
-                    Learn More
-                  </Button>
-                </FooterCard>
-              </Card>
-            ))}
+              );
+            })}
           </Box>
         </Box>
       </Box>
