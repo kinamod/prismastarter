@@ -217,7 +217,7 @@ export default function DestinationsPage() {
                 <FooterCard
                   sx={{
                     position: 'relative',
-                    zIndex: 1,
+                    zIndex: 10,
                     padding: '20px 32px',
                     background: 'transparent',
                     borderTop: '1px solid rgba(255, 255, 255, 0.2)',
