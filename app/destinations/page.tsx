@@ -7,6 +7,7 @@ import {
   Box,
   Flex,
   Card,
+  FooterCard,
   Heading,
   Body,
   Badge,
@@ -116,7 +117,7 @@ export default function DestinationsPage() {
             }}
           >
             {destinations.map((destination) => (
-              <Card
+              <Box
                 key={destination.id}
                 sx={{
                   position: 'relative',
@@ -125,7 +126,8 @@ export default function DestinationsPage() {
                   height: '500px',
                   display: 'flex',
                   flexDirection: 'column',
-                  padding: 0,
+                  borderRadius: '8px',
+                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
                   '&:hover': {
                     transform: 'translateY(-4px)',
                     boxShadow: '0 12px 24px rgba(0, 0, 0, 0.2)',
@@ -155,15 +157,15 @@ export default function DestinationsPage() {
                   }}
                 />
 
-                {/* Content */}
+                {/* Main Content */}
                 <Box
                   sx={{
                     position: 'relative',
                     zIndex: 1,
                     padding: '32px',
+                    flexGrow: 1,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: '100%',
                   }}
                 >
                   <Heading
@@ -186,50 +188,47 @@ export default function DestinationsPage() {
                     {destination.description}
                   </Body>
 
-                  {/* Bottom Section - Fixed Height */}
-                  <Box
-                    sx={{
-                      marginTop: 'auto',
-                    }}
+                  {/* Highlights Section */}
+                  <Flex
+                    flexDirection="column"
+                    sx={{ gap: '12px' }}
                   >
-                    <Box
-                      sx={{
-                        borderTop: '1px solid rgba(255, 255, 255, 0.3)',
-                        paddingTop: '16px',
-                        marginBottom: '20px',
-                      }}
-                    >
-                      <Flex
-                        flexDirection="column"
-                        sx={{ gap: '12px' }}
-                      >
-                        <Box>
-                          <Body weight="bold" size="small" sx={{ marginBottom: '4px', display: 'block', color: 'white' }}>
-                            Highlights
-                          </Body>
-                          <Body size="small" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
-                            {destination.highlights}
-                          </Body>
-                        </Box>
-
-                        <Box>
-                          <Body weight="bold" size="small" sx={{ marginBottom: '4px', display: 'block', color: 'white' }}>
-                            Best Time to Visit
-                          </Body>
-                          <Body size="small" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
-                            {destination.bestTime}
-                          </Body>
-                        </Box>
-                      </Flex>
+                    <Box>
+                      <Body weight="bold" size="small" sx={{ marginBottom: '4px', display: 'block', color: 'white' }}>
+                        Highlights
+                      </Body>
+                      <Body size="small" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                        {destination.highlights}
+                      </Body>
                     </Box>
 
-                    {/* Button - Always same distance from bottom */}
-                    <Button variant="primary" fullWidth>
-                      Learn More
-                    </Button>
-                  </Box>
+                    <Box>
+                      <Body weight="bold" size="small" sx={{ marginBottom: '4px', display: 'block', color: 'white' }}>
+                        Best Time to Visit
+                      </Body>
+                      <Body size="small" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                        {destination.bestTime}
+                      </Body>
+                    </Box>
+                  </Flex>
                 </Box>
-              </Card>
+
+                {/* Footer with Button */}
+                <FooterCard
+                  sx={{
+                    position: 'relative',
+                    zIndex: 1,
+                    padding: '20px 32px',
+                    background: 'rgba(0, 0, 0, 0.5)',
+                    backdropFilter: 'blur(10px)',
+                    borderTop: '1px solid rgba(255, 255, 255, 0.2)',
+                  }}
+                >
+                  <Button variant="primary" fullWidth>
+                    Learn More
+                  </Button>
+                </FooterCard>
+              </Box>
             ))}
           </Box>
         </Box>
