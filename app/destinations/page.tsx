@@ -7,7 +7,6 @@ import {
   Box,
   Flex,
   Card,
-  FooterCard,
   Heading,
   Body,
   Badge,
@@ -159,9 +158,9 @@ export default function DestinationsPage() {
                         width: '100%',
                         height: '100%',
                         backfaceVisibility: 'hidden',
-                        display: 'flex',
-                        flexDirection: 'column',
                         padding: 0,
+                        overflow: 'hidden',
+                        borderRadius: '12px',
                         boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
                       }}
                     >
@@ -261,22 +260,20 @@ export default function DestinationsPage() {
                             </Body>
                           </Box>
                         </Flex>
-                      </Box>
 
-                      {/* Footer */}
-                      <FooterCard
-                        sx={{
-                          position: 'relative',
-                          zIndex: 10,
-                          padding: '20px 32px',
-                          background: 'transparent',
-                          borderTop: '1px solid rgba(255, 255, 255, 0.2)',
-                        }}
-                      >
-                        <Body size="small" sx={{ color: 'white', textAlign: 'center' }}>
-                          Click to learn more →
-                        </Body>
-                      </FooterCard>
+                        {/* Footer inside content area */}
+                        <Box
+                          sx={{
+                            marginTop: 'auto',
+                            paddingTop: '20px',
+                            borderTop: '1px solid rgba(255, 255, 255, 0.2)',
+                          }}
+                        >
+                          <Body size="small" sx={{ color: 'white', textAlign: 'center' }}>
+                            Click to learn more →
+                          </Body>
+                        </Box>
+                      </Box>
                     </Card>
 
                     {/* Back Side */}
@@ -287,9 +284,9 @@ export default function DestinationsPage() {
                         height: '100%',
                         backfaceVisibility: 'hidden',
                         transform: 'rotateY(180deg)',
-                        display: 'flex',
-                        flexDirection: 'column',
                         padding: 0,
+                        overflow: 'hidden',
+                        borderRadius: '12px',
                         background: 'linear-gradient(135deg, #0066cc 0%, #0052a3 100%)',
                         boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
                       }}
@@ -370,19 +367,20 @@ export default function DestinationsPage() {
                             </Body>
                           </Box>
                         </Flex>
-                      </Box>
 
-                      <FooterCard
-                        sx={{
-                          padding: '20px 32px',
-                          background: 'rgba(0, 0, 0, 0.2)',
-                          borderTop: '1px solid rgba(255, 255, 255, 0.2)',
-                        }}
-                      >
-                        <Button variant="primary" fullWidth>
-                          Book Now
-                        </Button>
-                      </FooterCard>
+                        {/* Footer inside content area */}
+                        <Box
+                          sx={{
+                            marginTop: 'auto',
+                            paddingTop: '20px',
+                            borderTop: '1px solid rgba(255, 255, 255, 0.2)',
+                          }}
+                        >
+                          <Button variant="primary" fullWidth>
+                            Book Now
+                          </Button>
+                        </Box>
+                      </Box>
                     </Card>
                   </Box>
                 </Box>
