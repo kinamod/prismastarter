@@ -17,15 +17,30 @@ importers:
       '@edreamsodigeo/prisma-design-system':
         specifier: 27.5.0
         version: 27.5.0(date-fns@2.30.0)(intersection-observer@0.12.2)(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(resize-observer-polyfill@1.5.1)(smoothscroll-polyfill@0.4.4)
+      date-fns:
+        specifier: ^2.30.0
+        version: 2.30.0
+      intersection-observer:
+        specifier: ^0.12.2
+        version: 0.12.2
       next:
         specifier: ^16.0.8
         version: 16.1.6(@babel/core@7.29.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      prop-types:
+        specifier: ^15.8.1
+        version: 15.8.1
       react:
         specifier: 19.1.0
         version: 19.1.0
       react-dom:
         specifier: 19.1.0
         version: 19.1.0(react@19.1.0)
+      resize-observer-polyfill:
+        specifier: ^1.5.1
+        version: 1.5.1
+      smoothscroll-polyfill:
+        specifier: ^0.4.4
+        version: 0.4.4
     devDependencies:
       '@eslint/eslintrc':
         specifier: ^3
