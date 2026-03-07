@@ -4,6 +4,27 @@
 
 This project uses the **Prisma Design System** (`@edreamsodigeo/prisma-design-system`). All UI components must come from this package.
 
+## Emotion Setup (Required for SSR)
+
+**CRITICAL**: Prisma Design System uses Emotion for styling. Next.js requires proper Emotion cache setup to prevent hydration errors.
+
+### Setup (Already Configured)
+
+This project has the emotion registry configured in `app/emotion-registry.tsx` and wrapped in `app/layout.tsx`. This ensures:
+- Server-rendered styles match client-rendered styles
+- No hydration errors from emotion class names
+- Proper SSR performance with styled components
+
+**Dependencies required:**
+
+{
+  "@emotion/cache": "^11.14.0",
+  "@emotion/server": "^11.11.0"
+}
+```
+
+**DO NOT remove or modify** the `EmotionRegistry` wrapper in the root layout unless you know what you're doing.
+
 ## Theme Provider Setup
 
 Always wrap your application with `PrismaThemeProvider` and pass a theme from the `themes` object:
