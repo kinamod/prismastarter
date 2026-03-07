@@ -191,24 +191,20 @@ export default function Home() {
             id="get-started"
             sx={{
               marginTop: ['64px', '96px'],
-              paddingTop: '32px',
-              borderTop: '2px solid #e2e8f0',
             }}
           >
             <Card
               sx={{
                 padding: ['32px 24px', '48px'],
-                background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)',
-                border: '2px solid #0066cc',
               }}
             >
-              <Heading type={2} sx={{ margin: '0 0 24px 0', color: '#0066cc' }}>
+              <Heading type={2} sx={{ margin: '0 0 24px 0' }}>
                 🚀 Get Started with Prisma Design System
               </Heading>
 
               <Flex flexDirection="column" sx={{ gap: '32px' }}>
                 <Box>
-                  <Heading type={4} sx={{ margin: '0 0 12px 0', color: '#0066cc' }}>
+                  <Heading type={4} sx={{ margin: '0 0 12px 0' }}>
                     👀 Explore Interactive Destinations
                   </Heading>
                   <Body>
@@ -217,7 +213,7 @@ export default function Home() {
                 </Box>
 
                 <Box>
-                  <Heading type={4} sx={{ margin: '0 0 12px 0', color: '#0066cc' }}>
+                  <Heading type={4} sx={{ margin: '0 0 12px 0' }}>
                     🎨 For Designers: Build More Features
                   </Heading>
                   <Body sx={{ marginBottom: '12px' }}>
@@ -252,28 +248,35 @@ export default function Home() {
             </Card>
           </Box>
 
+          {/* Divider */}
+          <Box
+            sx={{
+              marginTop: '48px',
+              marginBottom: '48px',
+              height: '1px',
+              background: '#e2e8f0',
+            }}
+          />
+
           {/* Learn More Section */}
           <Box
             id="learn-more"
             sx={{
-              marginTop: '48px',
               marginBottom: '64px',
             }}
           >
             <Card
               sx={{
                 padding: ['32px 24px', '48px'],
-                background: 'linear-gradient(135deg, #fefce8 0%, #fef3c7 100%)',
-                border: '2px solid #f59e0b',
               }}
             >
-              <Heading type={2} sx={{ margin: '0 0 24px 0', color: '#d97706' }}>
+              <Heading type={2} sx={{ margin: '0 0 24px 0' }}>
                 💡 About Builder & Design Systems
               </Heading>
 
               <Flex flexDirection="column" sx={{ gap: '32px' }}>
                 <Box>
-                  <Heading type={4} sx={{ margin: '0 0 12px 0', color: '#d97706' }}>
+                  <Heading type={4} sx={{ margin: '0 0 12px 0' }}>
                     What is Builder?
                   </Heading>
                   <Body>
@@ -282,7 +285,7 @@ export default function Home() {
                 </Box>
 
                 <Box>
-                  <Heading type={4} sx={{ margin: '0 0 12px 0', color: '#d97706' }}>
+                  <Heading type={4} sx={{ margin: '0 0 12px 0' }}>
                     How Does It Work?
                   </Heading>
                   <Body>
@@ -290,27 +293,20 @@ export default function Home() {
                   </Body>
                 </Box>
 
-                <Box
-                  sx={{
-                    background: '#fffbeb',
-                    border: '2px solid #f59e0b',
-                    borderRadius: '8px',
-                    padding: '20px',
-                  }}
-                >
-                  <Heading type={4} sx={{ margin: '0 0 12px 0', color: '#d97706' }}>
+                <Box>
+                  <Heading type={4} sx={{ margin: '0 0 12px 0' }}>
                     📤 Share Your Preview
                   </Heading>
                   <Body sx={{ marginBottom: '12px' }}>
                     Want to share your work? Click the <strong>Share button</strong> at the top right of your screen <span style={{ fontSize: '24px' }}>↗️</span>
                   </Body>
-                  <Body size="small" sx={{ color: '#92400e' }}>
+                  <Body size="small" sx={{ color: '#64748b' }}>
                     This generates a preview link that anyone can view—perfect for getting feedback from your team or stakeholders!
                   </Body>
                 </Box>
 
                 <Box>
-                  <Heading type={4} sx={{ margin: '0 0 12px 0', color: '#d97706' }}>
+                  <Heading type={4} sx={{ margin: '0 0 12px 0' }}>
                     🎯 This Prisma Starter
                   </Heading>
                   <Body>
